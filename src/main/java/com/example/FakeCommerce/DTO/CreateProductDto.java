@@ -14,5 +14,5 @@ public class CreateProductDto {
     private BigDecimal price;
     private String image;
     private Long categoryId;
-    private String rating;
+    private BigDecimal rating;
 }

@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 
 @Data
@@ -17,6 +19,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "products")
+@SQLDelete(sql = "UPDATE products SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class Product extends BaseEntity {
     
 
@@ -36,7 +40,7 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "category_id",nullable = false)
     private Category category;
 
-    private String rating;
+    private BigDecimal rating;
 
 
 }
