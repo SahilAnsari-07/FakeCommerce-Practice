@@ -1,6 +1,8 @@
 package com.example.FakeCommerce.schema;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,4 +37,6 @@ public class Product extends BaseEntity {
     private Category category;
 
     private String rating;
+
+
 }

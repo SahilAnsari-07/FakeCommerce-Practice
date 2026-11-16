@@ -1,0 +1,29 @@
+package com.example.FakeCommerce.Controller;
+
+
+import com.example.FakeCommerce.DTO.CreateOrderDto;
+import com.example.FakeCommerce.DTO.OrderResponseDto;
+import com.example.FakeCommerce.services.OrderService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("api/v1/orders")
+@RequiredArgsConstructor
+public class OrderController {
+
+    private final OrderService orderService;
+
+    @PostMapping
+    public OrderResponseDto createOrder(@RequestBody List<CreateOrderDto> orders){
+        return orderService.createOrder(orders);
+    }
+
+
+
+}
