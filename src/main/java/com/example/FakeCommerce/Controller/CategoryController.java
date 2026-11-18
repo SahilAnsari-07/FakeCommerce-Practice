@@ -4,7 +4,9 @@ import com.example.FakeCommerce.DTO.CreateCategoryRequestDto;
 import com.example.FakeCommerce.repositories.CategoryRepository;
 import com.example.FakeCommerce.schema.Category;
 import com.example.FakeCommerce.services.CategoryService;
+import com.example.FakeCommerce.utils.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,23 +19,25 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping
-    public Category createCategory(@RequestBody CreateCategoryRequestDto category){
-        return categoryService.createCategory(category);
+    public ResponseEntity<ApiResponse<Category>> createCategory(@RequestBody CreateCategoryRequestDto category){
+
+        return ResponseEntity.ok(ApiResponse.success(categoryService.createCategory(category),"Category created successfully"));
     }
 
     @GetMapping
-    public List<Category> getAllCategories(){
-        return categoryService.getAllCategories();
+    public ResponseEntity<ApiResponse<List<Category>>> getAllCategories(){
+        return ResponseEntity.ok(ApiResponse.success(categoryService.getAllCategories(),"Categories retrieved successfully"));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategory(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<String>> deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
+        return ResponseEntity.ok(ApiResponse.success("Category deleted successfully","Category deleted successfully"));
     }
 
     @GetMapping("/{id}")
-    public Category getCategoryById(@PathVariable Long id){
-        return categoryService.getCategoryById(id);
+    public ResponseEntity<ApiResponse<Category>> getCategoryById(@PathVariable Long id){
+        return ResponseEntity.ok(ApiResponse.success(categoryService.getCategoryById(id),"Category retrieved successfully"));
     }
 
 

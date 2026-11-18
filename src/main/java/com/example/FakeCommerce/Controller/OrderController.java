@@ -2,6 +2,7 @@ package com.example.FakeCommerce.Controller;
 
 
 import com.example.FakeCommerce.DTO.CreateOrderDto;
+import com.example.FakeCommerce.DTO.ListOfCreateOrderDto;
 import com.example.FakeCommerce.DTO.OrderResponseDto;
 import com.example.FakeCommerce.services.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping
-    public OrderResponseDto createOrder(@RequestBody List<CreateOrderDto> orders){
+    public OrderResponseDto createOrder(@RequestBody ListOfCreateOrderDto orders){
         return orderService.createOrder(orders);
     }
 

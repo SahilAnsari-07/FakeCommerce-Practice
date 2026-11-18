@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.FakeCommerce.DTO.CreateProductDto;
 import com.example.FakeCommerce.DTO.GetProductResponseDto;
 import com.example.FakeCommerce.DTO.GetProductWithDetailsResponseDto;
+import com.example.FakeCommerce.exception.ResourceNotFoundException;
 import com.example.FakeCommerce.schema.Category;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +47,7 @@ public class ProductService {
                 .image(product.getImage())
                 .rating(product.getRating())
                 .build())
-            .orElseThrow(() -> new RuntimeException("Product not found"));
+            .orElseThrow(() -> new ResourceNotFoundException("Product not found with id: " + id));
     }
 
     public GetProductWithDetailsResponseDto getProductWithDetailsById(Long id){
